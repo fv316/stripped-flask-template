@@ -4,12 +4,12 @@
 
 from flask import flash, redirect, render_template, request, \
     url_for, Blueprint   # pragma: no cover
-from flask.ext.login import login_user, \
+from flask_login import login_user, \
     login_required, logout_user   # pragma: no cover
 
 from .forms import LoginForm, RegisterForm   # pragma: no cover
 from project import db   # pragma: no cover
-from project.models import User, bcrypt   # pragma: no cover
+from project.models import User   # pragma: no cover
 
 ################
 #### config ####
@@ -36,7 +36,7 @@ def login():
                 user.password, request.form['password']
             ):
                 login_user(user)
-                flash('You were logged in. Go Crazy.')
+                flash('You were logged in. Enjoy.')
                 return redirect(url_for('home.home'))
 
             else:

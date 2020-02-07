@@ -1,5 +1,5 @@
 from project import db
-from project import bcrypt
+from project import Bcrypt
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship

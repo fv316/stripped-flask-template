@@ -2,19 +2,11 @@ import unittest
 import os
 import coverage
 
-from flask.ext.script import Manager
-from flask.ext.migrate import Migrate, MigrateCommand
+from flask_script import Manager
 
-from project import app, db
+from project import app
 
-
-app.config.from_object(os.environ['APP_SETTINGS'])
-
-migrate = Migrate(app, db)
 manager = Manager(app)
-
-manager.add_command('db', MigrateCommand)
-
 
 @manager.command
 def test():
@@ -35,7 +27,7 @@ def cov():
     unittest.TextTestRunner(verbosity=2).run(tests)
     cov.stop()
     cov.save()
-    print 'Coverage Summary:'
+    print('Coverage Summary:')
     cov.report()
     basedir = os.path.abspath(os.path.dirname(__file__))
     covdir = os.path.join(basedir, 'coverage')
